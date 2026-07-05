@@ -2,7 +2,8 @@ pymupdf
 python-dotenv
 langchain
 langchain-community
-langchain-openai
+langchain-ollama
+langchain-huggingface
+sentence-transformers
 pypdf
 faiss-cpu
-openai

@@ -1,6 +1,8 @@
-from langchain_ollama import chatOllama 
-from transformers import AutoTokenizer, AutoModelForCausalLM
+from langchain_ollama import ChatOllama
+from langchain_huggingface import HuggingFaceEmbeddings
 
-tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen3-Embedding-0.6B")
-model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen3-Embedding-0.6B")
-embedding_model = chatOllama(model=model, tokenizer=tokenizer, model_path="Qwen/Qwen3-Embedding-0.6B") 
+llm = ChatOllama(model="qwen3:8b")
+
+embeddings = HuggingFaceEmbeddings(
+    model_name="BAAI/bge-small-en"
+)
