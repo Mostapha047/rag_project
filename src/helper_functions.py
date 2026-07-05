@@ -1,8 +1,13 @@
-def replace_t_with_space(string):
+def replace_t_with_space(documents):
     """
-    Replaces all occurrences of 't' in the input string with a space.
+    Replaces tab characters with spaces in each document's page content.
 
     Args:
-        string (str): The input string.
+        documents: A list of LangChain Document objects.
+
+    Returns:
+        The same list of Document objects with tabs stripped from page_content.
     """
-    return string.replace('t', ' ')
+    for doc in documents:
+        doc.page_content = doc.page_content.replace('\t', ' ')
+    return documents
