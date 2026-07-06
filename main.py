@@ -1,20 +1,18 @@
+from fastapi import FastAPI
+from pydantic import BaseModel
+
 from src.chains import ask
 
 
-def main():
-    print("RAG system ready. Type 'exit' to quit.")
-
-    pdf_path = input("Path to the PDF you want to ask about: ").strip()
-
-    while True:
-        question = input("\nAsk a question: ")
-
-        if question.lower() in ["exit", "quit"]:
-            break
-
-        answer = ask(question, pdf_path)
-        print("\nAnswer:\n", answer)
+class AskRequest(BaseModel):
+    question: str
+    pdf_path: str
 
 
-if __name__ == "__main__":
-    main()
+app = FastAPI()
+
+
+@app.post("/ask")
+def ask_endpoint(request: AskRequest):
+    answer = ask(request.question, request.pdf_path)
+    return {"answer": answer}

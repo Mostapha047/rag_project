@@ -27,3 +27,6 @@ wheels/
 data/
 vectorstores/
 *.log
+
+# Personal learning notes, not part of the project itself
+tutorial/
